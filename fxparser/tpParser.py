@@ -17,7 +17,7 @@ class TPParser(BaseParser):
         self.matcher.add("TP", None, pattern2)
 
     def parse_text(self, text):
-        self.doc = self.nlp(re.sub(' +', ' ', text))
+        self.doc = self.nlp(text)
         self.matches = self.matcher(self.doc)
         # self.explain(text)
         if self.debug:

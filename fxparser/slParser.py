@@ -2,6 +2,7 @@ import spacy
 import json
 from .baseParser import BaseParser
 from spacy.matcher import Matcher
+import re
 
 
 class SLParser(BaseParser):
@@ -24,4 +25,4 @@ class SLParser(BaseParser):
             return ""
         _, start, end = self.matches[0]    
         span = self.doc[start:end]  # The matched span
-        return span[-1].text
+        return re.sub(r'[^\d.]+', '', span[-1].text)

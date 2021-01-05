@@ -6,11 +6,12 @@ def give_emoji_free_text(text):
     return emoji.get_emoji_regexp().sub(r'', text)
 
 examples = [
-    "samples/sample1.txt",
-    "samples/sample2.txt",
-    "samples/sample3.txt",
-    "samples/sample4.txt",
-    "samples/sample5.txt"
+    # "samples/sample1.txt",
+    # "samples/sample2.txt",
+    # "samples/sample3.txt",
+    # "samples/sample4.txt",
+    # "samples/sample5.txt",
+    "samples/sample6.txt",
 ]
 
 actionParser = ActionParser()
@@ -33,6 +34,6 @@ for item in examples:
     # print(sl)
     # print(tp)
     # print(urgency)
-    data = helper.parse_text(give_emoji_free_text(file_data))
+    data = helper.parse_text(file_data)
     print(data)
     print("\n\n")

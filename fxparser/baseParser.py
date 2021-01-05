@@ -10,8 +10,8 @@ class BaseParser:
         self.matches = []
         self.doc = None
 
-        self.prefix_re = re.compile(r'''^[\[("']''')
-        self.suffix_re = re.compile(r'''[\])"']$''')
+        self.prefix_re = re.compile(r'''^[-~@:\[("']''')
+        self.suffix_re = re.compile(r'''[-~@:\])"']$''')
         self.infix_re = re.compile(r'''[-~@:]''')
 
         def custom_tokenizer(self):
