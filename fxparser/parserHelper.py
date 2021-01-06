@@ -17,7 +17,7 @@ class ForexDTO():
     tp3: float = 0.0
     tp4: float = 0.0
     tp5: float = 0.0
-    lotSize: float = 0.02
+    lotSize: float = 0.07
     type: int = 0
 
 class ParserHelper():
