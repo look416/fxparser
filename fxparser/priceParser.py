@@ -25,7 +25,7 @@ class PriceParser(BaseParser):
                     prices.remove(price)
                 if sl in prices:
                     prices.remove(sl)
-        prices = list(filter(lambda tmp: not tmp.isdigit(), prices))
+        prices = list(filter(lambda tmp: not tmp.isdigit() or int(tmp) > 20, prices))
         if len(prices) == 0:
             return ""
         return prices[0]

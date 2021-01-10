@@ -5,6 +5,10 @@ from .tpParser import TPParser
 from .urgencyParser import UrgencyParser
 from .symbolParser import SymbolParser
 import dataclasses as dc
+from typing import Collection, List
+
+def make_tp_list() -> List[float]:
+    return []
 
 @dc.dataclass(unsafe_hash=True)
 class ForexDTO():
@@ -17,6 +21,7 @@ class ForexDTO():
     tp3: float = 0.0
     tp4: float = 0.0
     tp5: float = 0.0
+    tpList: Collection[float] = dc.field(default_factory=make_tp_list)
     lotSize: float = 0.07
     type: int = 0
 
@@ -32,7 +37,6 @@ class ParserHelper():
     def parse_text(self, text):
         result = ForexDTO()
         text = self.actionParser.clean_text(text)
-
         action = self.actionParser.parse_text(text)
         sl = self.slParser.parse_text(text)
         tp = self.tpParser.parse_text(text)
@@ -47,6 +51,7 @@ class ParserHelper():
         result.tp3 = float(tp[2]) if len(tp) > 2 else 0.0
         result.tp4 = float(tp[3]) if len(tp) > 3 else 0.0
         result.tp5 = float(tp[4]) if len(tp) > 4 else 0.0
+        result.tpList = tp
         result.market = urgency
         result.price = float(price) if price else 0.0
         result.symbol = symbol

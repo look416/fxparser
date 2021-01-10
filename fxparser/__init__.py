@@ -5,6 +5,7 @@ from .tpParser import TPParser
 from .urgencyParser import UrgencyParser
 from .symbolParser import SymbolParser
 from .parserHelper import ParserHelper
+from .flagParser import FlagParser
 
 __all__ = [
     "ActionParser",
@@ -12,5 +13,7 @@ __all__ = [
     "SLParser",
     "TPParser",
     "UrgencyParser",
-    "ParserHelper"
+    "ParserHelper",
+    "SymbolParser",
+    "FlagParser",
 ]

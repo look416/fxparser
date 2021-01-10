@@ -10,7 +10,7 @@ examples = [
     # "samples/sample2.txt",
     # "samples/sample3.txt",
     # "samples/sample4.txt",
-    # "samples/sample5.txt",
+    "samples/sample5.txt",
     "samples/sample6.txt",
 ]
 
@@ -24,16 +24,6 @@ helper = ParserHelper()
 for item in examples:
     file_data = Path(__file__).parent.joinpath(item).read_text()
     print(item)
-    # action = actionParser.parse_text(file_data)
-    # sl = slParser.parse_text(file_data)
-    # tp = tpParser.parse_text(file_data)
-    # urgency = urgencyParser.parse_text(file_data)
-    # price = priceParser.parse_text(file_data, tp, sl)
-    # print(action)
-    # print(price)
-    # print(sl)
-    # print(tp)
-    # print(urgency)
     data = helper.parse_text(file_data)
     print(data)
     print("\n\n")

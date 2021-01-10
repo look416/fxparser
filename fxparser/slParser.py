@@ -10,9 +10,9 @@ class SLParser(BaseParser):
         super().__init__()
         self.matcher = Matcher(self.nlp.vocab)
         pattern = [{"LOWER": {"IN": ["sl", "s/l"]}},
-                   {"ORTH": {"IN": [":", " ", "@"]}, "OP": "*"}, {"LIKE_NUM": True}]
+                   {"ORTH": {"IN": [":", " ", "@", "="]}, "OP": "*"}, {"LIKE_NUM": True}]
         pattern2 = [{"LOWER": "stop"}, {"LOWER": "loss"},
-                    {"ORTH": {"IN": [":", " ", "@"]}, "OP": "*"}, {"LIKE_NUM": True}]
+                    {"ORTH": {"IN": [":", " ", "@", "="]}, "OP": "*"}, {"LIKE_NUM": True}]
         self.matcher.add("SL", None, pattern)
         self.matcher.add("SL", None, pattern2)
 
