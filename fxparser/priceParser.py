@@ -11,7 +11,7 @@ class PriceParser(BaseParser):
         pattern = [{"LIKE_NUM": True}]
         self.matcher.add("Price", None, pattern)
 
-    def parse_text(self, text, tps, sl):
+    def parse_text(self, text, tps, sl, symbol):
         self.doc = self.nlp(text)
         self.matches = self.matcher(self.doc)
         prices = []
@@ -25,7 +25,7 @@ class PriceParser(BaseParser):
                     prices.remove(price)
                 if sl in prices:
                     prices.remove(sl)
-        prices = list(filter(lambda tmp: not tmp.isdigit() or int(tmp) > 20, prices))
+        prices = list(filter(lambda tmp: not tmp.isdigit() or ((symbol == "GOLD" or symbol == "XAUUSD") and int(tmp) > 1000), prices))
         if len(prices) == 0:
             return ""
         return prices[0]

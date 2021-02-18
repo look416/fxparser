@@ -10,7 +10,7 @@ examples = [
     # "samples/sample2.txt",
     # "samples/sample3.txt",
     # "samples/sample4.txt",
-    "samples/sample5.txt",
+    # "samples/sample5.txt",
     "samples/sample6.txt",
 ]
 

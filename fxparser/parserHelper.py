@@ -36,21 +36,29 @@ class ParserHelper():
 
     def parse_text(self, text):
         result = ForexDTO()
+        text = text.replace("-","")
         text = self.actionParser.clean_text(text)
         action = self.actionParser.parse_text(text)
         sl = self.slParser.parse_text(text)
         tp = self.tpParser.parse_text(text)
         urgency = self.urgencyParser.parse_text(text)
-        price = self.priceParser.parse_text(text, tp, sl)
         symbol = self.symbolParser.parse_text(text)
+        price = self.priceParser.parse_text(text, tp, sl, symbol)
+        
+        if action == "BUY":
+            result.type = 1 
+        elif action == "SELL":
+            result.type = 2
 
-        result.type = 1 if action == "BUY" else 2
         result.sl = float(sl) if sl else 0.0
-        result.tp = float(tp[0]) if len(tp) > 0 else 0.0
-        result.tp2 = float(tp[1]) if len(tp) > 1 else 0.0
-        result.tp3 = float(tp[2]) if len(tp) > 2 else 0.0
-        result.tp4 = float(tp[3]) if len(tp) > 3 else 0.0
-        result.tp5 = float(tp[4]) if len(tp) > 4 else 0.0
+        try:
+            result.tp = float(tp[0]) if len(tp) > 0 else 0.0
+            result.tp2 = float(tp[1]) if len(tp) > 1 else 0.0
+            result.tp3 = float(tp[2]) if len(tp) > 2 else 0.0
+            result.tp4 = float(tp[3]) if len(tp) > 3 else 0.0
+            result.tp5 = float(tp[4]) if len(tp) > 4 else 0.0
+        except:
+            print("Price parsing error")
         result.tpList = tp
         result.market = urgency
         result.price = float(price) if price else 0.0
