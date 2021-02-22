@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fxparser"
-version = "2.3.4"
+version = "2.3.5"
 description = "A forex message parser to extract information such as symbols, tps, and sls"
 authors = ["Danny"]
 license = "GNU GPLv3"

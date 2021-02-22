@@ -6,6 +6,7 @@ from .urgencyParser import UrgencyParser
 from .symbolParser import SymbolParser
 import dataclasses as dc
 from typing import Collection, List
+import re
 
 def make_tp_list() -> List[float]:
     return []
@@ -36,7 +37,9 @@ class ParserHelper():
 
     def parse_text(self, text):
         result = ForexDTO()
-        text = text.replace("-","")
+        text = re.sub(r"[-#]","",text)
+        text = text.replace("🔻", "SL: ")
+        text = text.replace("🔹", "TP: ")
         text = self.actionParser.clean_text(text)
         action = self.actionParser.parse_text(text)
         sl = self.slParser.parse_text(text)
