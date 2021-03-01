@@ -37,7 +37,8 @@ class ParserHelper():
 
     def parse_text(self, text):
         result = ForexDTO()
-        text = re.sub(r"[-#]","",text)
+        text = re.sub(r"[#]","",text)
+        text = re.sub(r"[-]","/",text)
         text = text.replace("🔻", "SL: ")
         text = text.replace("🔹", "TP: ")
         text = self.actionParser.clean_text(text)
@@ -64,7 +65,10 @@ class ParserHelper():
             print("Price parsing error")
         result.tpList = tp
         result.market = urgency
-        result.price = float(price) if price else 0.0
+        try:
+            result.price = float(price) if price else 0.0
+        except:
+            result.price = 0.0
         result.symbol = symbol
 
         return result

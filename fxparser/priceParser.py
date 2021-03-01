@@ -1,5 +1,6 @@
 import spacy
 import json
+import re
 from .baseParser import BaseParser
 from spacy.matcher import Matcher
 
@@ -12,6 +13,7 @@ class PriceParser(BaseParser):
         self.matcher.add("Price", None, pattern)
 
     def parse_text(self, text, tps, sl, symbol):
+        text = re.sub(r"[/]"," ",text)
         self.doc = self.nlp(text)
         self.matches = self.matcher(self.doc)
         prices = []
